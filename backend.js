@@ -33,7 +33,9 @@ async function addressToLocation(address = 'Wilhelminenhofstraße 75A, 12459 Ber
   return result.data;
 }
 
-function apiCallGraphHopper(locations) {
+async function apiCallGraphHopper(locations) {
+
+  let test;
 
   const ghRouting = new GraphHopperRouting({
     key: API_KEY_GRAPHHOPPER, vehicle: 'bike', elevation: false, optimize: true,
@@ -43,30 +45,49 @@ function apiCallGraphHopper(locations) {
     ghRouting.addPoint(new GHInput(location));
   });
 
-  ghRouting.doRequest()
-    .then((respons) => {
+  await ghRouting.doRequest()
+    .then((response) => {
 
-      console.log(`\nDie Distanz beträgt: ${(respons.paths[0].distance)}m.`);
-      console.log(`Die Dauer beträgt: ${(respons.paths[0].time / 1000)}s.`);
-      console.log(respons)
-
+      console.log(`\nDie Distanz beträgt: ${(response.paths[0].distance)}m.`);
+      console.log(`Die Dauer beträgt: ${(response.paths[0].time / 1000)}s.`);
+      console.log(response)
+      test = response
     })
     .catch((err) => {
       console.error(err.message);
     });
+  return test.paths[0].distance
+
+
+
 }
 
-async function main() {
+async function getLocations() {
+
+  const latLng = await Promise.all(address.map(async (location) => {
+    const address = await addressToLocation(`${location.street} ${location.number}, ${location.zip} ${location.place}, ${location.country}`);
+    return address.results[0].geometry.location;
+  }));
+  console.log(latLng)
+  return latLng
+}
+
+/*async function main() {
   const latLng = await Promise.all(address.map(async (location) => {
     const address = await addressToLocation(`${location.street} ${location.number}, ${location.zip} ${location.place}, ${location.country}`);
     return address.results[0].geometry.location;
   }));
   console.log(latLng);
   apiCallGraphHopper(latLng);
-}
+} */
+
+module.exports= {
+  apiCallGraphHopper,
+  getLocations,
+  addressToLocation
+};
 
 
-
-main().then((nothing) => {
+/* main().then((nothing) => {
 console.log('Nothing', nothing);
-});
+}); */

@@ -3,12 +3,28 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const app = express();
 const port = process.env.PORT || 5000;
+
+const backend = require('./backend')
+
+const asyncMiddleware = fn =>
+  (req, res, next) => {
+    Promise.resolve(fn(req, res, next))
+      .catch(next);
+  };
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // API calls
 app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
 });
+
+app.get('/api/graphhopper', asyncMiddleware(async (req, res) => {
+  const locations = await backend.getLocations();
+  const response = await backend.apiCallGraphHopper(locations);
+  res.send({ express: `Die Route von der Treskowallee 8 bis zur Wilhelminenhofstraße 75a beträgt ${response} Meter` });
+}));
+
 app.post('/api/world', (req, res) => {
   console.log(req.body);
   res.send(
