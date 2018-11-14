@@ -37,7 +37,6 @@ async function addressToLocation(address = 'Wilhelminenhofstraße 75A, 12459 Ber
 }
 
 async function apiCallGraphHopper(locations) {
-  console.log(GRAPHHOPPER_KEY)
 
   let responseFromGraphhopper;
 
@@ -61,18 +60,15 @@ async function apiCallGraphHopper(locations) {
       console.error(err.message);
     });
   return responseFromGraphhopper.paths[0].distance
-
-
-
 }
 
-async function getLocations() {
+async function getLocations(addresses) {
 
-  const latLng = await Promise.all(address.map(async (location) => {
+  const latLng = await Promise.all(addresses.map(async (location) => {
     const address = await addressToLocation(`${location.street} ${location.number}, ${location.zip} ${location.place}, ${location.country}`);
     return address.results[0].geometry.location;
   }));
-  console.log(latLng)
+  //console.log(latLng)
   return latLng
 }
 

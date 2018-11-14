@@ -15,22 +15,23 @@ const asyncMiddleware = fn =>
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 // API calls
-app.get('/api/hello', (req, res) => {
+/* app.get('/api/hello', (req, res) => {
   res.send({ express: 'Hello From Express' });
-});
+}); */
 
-app.get('/api/graphhopper', asyncMiddleware(async (req, res) => {
+/* app.get('/api/graphhopper', asyncMiddleware(async (req, res) => {
   const locations = await backend.getLocations();
   const response = await backend.apiCallGraphHopper(locations);
   res.send({ express: `Die Route von der Treskowallee 8 bis zur Wilhelminenhofstraße 75a beträgt ${response} Meter` });
+})); */
+
+app.post('/api/graphhopper-post', asyncMiddleware(async (req, res) => {
+  const { address } = req.body;
+  const locations = await backend.getLocations(address);
+  const response = await backend.apiCallGraphHopper(locations);
+  res.send({express: `Die Route von der Treskowallee 8 bis zur Wilhelminenhofstraße 75a beträgt ${response} Meter`});
 }));
 
-app.post('/api/world', (req, res) => {
-  console.log(req.body);
-  res.send(
-    `I received your POST request. This is what you sent me: ${req.body.post}`,
-  );
-});
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
   app.use(express.static(path.join(__dirname, 'client/build')));
