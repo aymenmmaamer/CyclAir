@@ -1,0 +1,4 @@
+const  API_KEY_GRAPHHOPPER = '12ef0796-c22c-4cc1-9a8f-d36265819b81';
+const  API_KEY_GOOGLE = 'AIzaSyC7kzzvA_WhjWsXX8LRv349GgcdFDPsShw';
+
+module.exports = { API_KEY_GRAPHHOPPER, API_KEY_GOOGLE };
