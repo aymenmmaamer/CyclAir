@@ -1,4 +1,4 @@
-# CyclAir
+# CyclAir [![Build Status](https://travis-ci.org/sxmxn/CyclAir.svg?branch=master)](https://travis-ci.org/sxmxn/CyclAir)
 CyclAir is a WebApp built with ReactJs and NodeJs as part of a university project at the HTW Berlin.
 It provides a mapping service for cyclist that also considers the air quality when calculating routes.
 
