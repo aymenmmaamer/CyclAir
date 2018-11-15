@@ -5,3 +5,7 @@ script:
   - "cd client"
   - "npm install"
   - "npm run test"
+deploy:
+  provider: heroku
+  api_key:
+    secure: "05bc37d1-877d-41df-a649-e793cff8ec00"
