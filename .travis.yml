@@ -3,7 +3,7 @@ node_js:
 - stable
 script:
 - cd client
-- npm install --only=dev --no-shrinkwrap
+- npm install
 - npm run test
 deploy:
   provider: heroku
