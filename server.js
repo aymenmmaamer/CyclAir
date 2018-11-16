@@ -29,7 +29,7 @@ app.post('/api/graphhopper-post', asyncMiddleware(async (req, res) => {
   const { address } = req.body;
   const locations = await backend.getLocations(address);
   const response = await backend.apiCallGraphHopper(locations);
-  res.send({express: `Die Route von der Treskowallee 8 bis zur Wilhelminenhofstraße 75a beträgt ${response} Meter`});
+  res.send({express: `Die Route von der Treskowallee 8 bis zur Wilhelminenhofstraße 75a beträgt mit dem Fahrrad ${response} Meter!`});
 }));
 
 if (process.env.NODE_ENV === 'production') {
