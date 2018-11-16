@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './img/wheel.png';
 import './App.css';
+import appBar from './components/appBar.js';
 
 class App extends Component {
   state = {
@@ -57,6 +58,7 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
         </header>
+        <appBar>test</appBar>
         <p>{this.state.response}</p>
       </div>
     );

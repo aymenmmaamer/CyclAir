@@ -10,6 +10,7 @@
     "test": "cd client && npm run test"
   },
   "dependencies": {
+    "@material-ui/core": "^3.5.1",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "geojson": "^0.5.0",
