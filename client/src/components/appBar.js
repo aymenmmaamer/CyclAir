@@ -36,6 +36,7 @@ function ButtonAppBar(props) {
           <Typography variant="title" color="inherit" className={classes.flex}>
             CyclAir
           </Typography>
+          <Button/>
         </Toolbar>
       </AppBar>
     </div>
