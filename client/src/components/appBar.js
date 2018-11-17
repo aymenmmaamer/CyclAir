@@ -1,25 +1,40 @@
-import React, { Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
 
 const styles = {
   root: {
     flexGrow: 1,
   },
+  flex: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginLeft: -12,
+    marginRight: 20,
+  },
+  appbar: {
+    backgroundColor: '#059C75'
+  }
 };
 
-function SimpleAppBar(props) {
+function ButtonAppBar(props) {
   const { classes } = props;
-
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
+      <AppBar position="static" className={classes.appbar}>
         <Toolbar>
-          <Typography variant="h6" color="inherit">
-            Photos
+          <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="title" color="inherit" className={classes.flex}>
+            CyclAir
           </Typography>
         </Toolbar>
       </AppBar>
@@ -27,8 +42,8 @@ function SimpleAppBar(props) {
   );
 }
 
-SimpleAppBar.propTypes = {
+ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(SimpleAppBar);
+export default withStyles(styles)(ButtonAppBar);
