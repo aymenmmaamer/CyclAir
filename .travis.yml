@@ -3,7 +3,7 @@ node_js:
 - stable
 script:
 - cd client
-- npm install
+- npm ci
 - npm run test
 deploy:
   provider: heroku
