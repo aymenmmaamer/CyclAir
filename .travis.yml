@@ -12,3 +12,4 @@ deploy:
   app:
     master: cyclair
     dev: cyclair-dev
+  skip_cleanup: true
