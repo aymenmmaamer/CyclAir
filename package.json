@@ -15,9 +15,13 @@
     "geojson": "^0.5.0",
     "graphhopper-js-api-client": "^0.10.0",
     "querystring": "^0.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "utils": "^0.3.1"
   },
   "devDependencies": {
-    "concurrently": "^4.0.1"
+    "concurrently": "^4.0.1",
+    "enzyme": "^3.7.0",
+    "enzyme-adapter-react-16": "^1.7.0"
   }
 }
