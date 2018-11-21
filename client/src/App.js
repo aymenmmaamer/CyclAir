@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './img/wheel.png';
 import './App.css';
+import Form from './Form'; // Form.js is embedded here
 
 class App extends Component {
   state = {
@@ -49,6 +50,10 @@ class App extends Component {
     return body;
   }
 
+  onSubmit = (fields) => { // for the Developper to see that the entered Words were submitted
+    console.log('App comp got: ', fields);
+  }
+  // Commented here because it doesn't word behind the Form: Form is insert and refers to Form.js
   render() {
     return (
       <div className="App">
@@ -57,6 +62,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
           </div>
         </header>
+        <Form onSubmit={fields => this.onSubmit(fields)}> 
+        </Form> 
         <p>{this.state.response}</p>
       </div>
     );
