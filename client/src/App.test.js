@@ -1,3 +1,6 @@
+/* These tests can be run by giving the "test" attribute in the 
+package.json (root directory) the value of "cd client && npm run test". */
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
