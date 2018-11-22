@@ -8,11 +8,8 @@ class App extends Component {
     response: '',
     address: null
   };
-  componentDidMount() {
-    this.postRequest()
-      .then(res => this.setState({ response: res.express }))
-      .catch(err => console.log(err));
-  }
+  //     Wilhelminenhofstraße 75A, 12459 Berlin, Germany
+  //     Treskowallee 8, 10318 Berlin, Germany
 
   postRequest = async () => {
     const request = await fetch('/api/graphhopper-post', {
@@ -24,22 +21,14 @@ class App extends Component {
       body: JSON.stringify({
         address : [
           {
-            "street": "Wilhelminenhofstraße",
-            "number": "75A",
-            "zip": 12459,
-            "place": "Berlin",
-            "country": "Germany"
+            "street": this.state.address.startAdress,
           },
           {
-            "street": "Treskowallee",
-            "number": "8",
-            "zip": 10318,
-            "place": "Berlin",
-            "country": "Germany"
+            "street": this.state.address.destinationAdress,
           }
         ]
       })
-    })
+    });
     const body = await request.json();
     if (request.status !== 200) throw Error(body.message);
     return body;
@@ -47,7 +36,9 @@ class App extends Component {
 
   onSubmit = (fields) => { // for the Developper to see that the entered Words were submitted
     this.setState({ address: fields }, () => {
-      console.log(this.state)
+      this.postRequest()
+        .then(res => this.setState({ response: res.express }))
+        .catch(err => console.log(err));
     });
 
   };
