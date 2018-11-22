@@ -28,14 +28,15 @@ export default class Form extends React.Component { // export the expention func
             <form>
                 <input 
                     name = 'startAdress'
-                    placeholder ='Start Adresse' 
+                    placeholder ='Start Adresse'
                     value={this.state.startAdress} 
                     onChange={e => this.change(e)}
                 />
                 <br />
                 <input 
-                    name = 'destinationAdress' 
-                    placeholder ='Ziel Adresse' //placeholder does not funktion
+                    name = 'destinationAdress'
+                    type='text'
+                    placeholder='Ziel Adresse' //placeholder does not work
                     value={this.state.destinationAdress} 
                     onChange={e => this.change(e)}
                 />
