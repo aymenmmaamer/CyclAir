@@ -13,4 +13,4 @@ deploy:
     master: cyclair
     dev: cyclair-dev
     b/CA-75-invalid-host-header: cyclair-dev
-  skip_cleanup: true
+  skip_cleanup: false
