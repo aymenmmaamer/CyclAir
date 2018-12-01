@@ -3,6 +3,7 @@ const GHInput = require('graphhopper-js-api-client/src/GHInput');
 const axios = require('axios');
 const querystring = require('querystring');
 const Keys = require('./apiKeys');
+const fs = require('fs');
 
 // import { API_KEY_GRAPHHOPPER, API_KEY_GOOGLE } from "./apiKeys";
 
@@ -55,6 +56,11 @@ async function apiCallGraphHopper(locations) {
       console.log(`Die Dauer beträgt: ${(response.paths[0].time / 1000)}s.`);
       console.log(response)
       responseFromGraphhopper = response
+
+      const points = JSON.stringify(response.paths[0].points, null, 4);
+      fs.writeFile('geojson.json', points, (err) => {
+        if(err) console.error(err);
+      });
     })
     .catch((err) => {
       console.error(err.message);
