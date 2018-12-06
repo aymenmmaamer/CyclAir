@@ -12,3 +12,6 @@ describe('<App />', () => {
     expect(component).toHaveLength(1);
   });
 });
+jest.mock('mapbox-gl/dist/mapbox-gl', () => ({
+  Map: () => ({})
+}));
