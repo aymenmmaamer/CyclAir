@@ -29,7 +29,7 @@ app.post('/api/graphhopper-post', asyncMiddleware(async (req, res) => {
   const { address } = req.body;
   const locations = await backend.getLocations(address);
   const response = await backend.apiCallGraphHopper(locations);
-  res.send({express: `Die Route beträgt mit dem Fahrrad ${response} Meter!`});
+  res.json({express: response});
 }));
 
 if (process.env.NODE_ENV === 'production') {
