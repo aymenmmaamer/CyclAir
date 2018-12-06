@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import logo from './img/wheel.png';
 import './App.css';
 import Form from './Form'; // Form.js is embedded here
+import Map from './components/Map'
 
 class App extends Component {
   state = {
-    response: '',
+    response: null,
     address: null
   };
   //     Wilhelminenhofstraße 75A, 12459 Berlin, Germany
@@ -52,8 +53,16 @@ class App extends Component {
           </div>
         </header>
         <Form onSubmit={fields => this.onSubmit(fields)}> 
-        </Form> 
-        <p>{this.state.response}</p>
+        </Form>
+        <div>
+        { this.state.response !== null &&
+          <div>{`Mit dem Fahrrad sind es ${this.state.response.distance} Meter`}
+            <Map value={this.state.response}/> </div>
+        }
+        { this.state.response === null &&
+          <Map value={this.state.response}/>
+        }
+        </div>
       </div>
     );
   }
