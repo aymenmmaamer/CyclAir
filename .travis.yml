@@ -5,6 +5,7 @@ script:
 - cd client
 - npm ci
 - npm run test
+- npm run heroku-postbuild
 deploy:
   provider: heroku
   api_key:
