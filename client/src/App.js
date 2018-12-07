@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './img/wheel.png';
+import logo from './img/nico.png';
 import './App.css';
 import Form from './Form'; // Form.js is embedded here
 import Map from './components/Map'

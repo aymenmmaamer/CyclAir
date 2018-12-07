@@ -5,6 +5,7 @@ script:
 - cd client
 - npm ci
 - npm run test
+- cd ..
 deploy:
   provider: heroku
   api_key:
@@ -12,4 +13,5 @@ deploy:
   app:
     master: cyclair
     dev: cyclair-dev
+    b/invalid-h: bugfick
   skip_cleanup: true
