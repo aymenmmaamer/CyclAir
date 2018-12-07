@@ -3,6 +3,7 @@ const GHInput = require('graphhopper-js-api-client/src/GHInput');
 const axios = require('axios');
 const querystring = require('querystring');
 const Keys = require('./apiKeys');
+const fs = require('fs');
 
 // import { API_KEY_GRAPHHOPPER, API_KEY_GOOGLE } from "./apiKeys";
 
@@ -38,7 +39,7 @@ async function addressToLocation(address = 'Wilhelminenhofstraße 75A, 12459 Ber
 
 async function apiCallGraphHopper(locations) {
 
-  let responseFromGraphhopper;
+  let responseFromGraphhopper = [];
 
   const ghRouting = new GraphHopperRouting({
     key: GRAPHHOPPER_KEY, vehicle: 'bike', elevation: false, optimize: true,
@@ -54,12 +55,17 @@ async function apiCallGraphHopper(locations) {
       console.log(`\nDie Distanz beträgt: ${(response.paths[0].distance)}m.`);
       console.log(`Die Dauer beträgt: ${(response.paths[0].time / 1000)}s.`);
       console.log(response)
-      responseFromGraphhopper = response
+      responseFromGraphhopper = response.paths[0]
+
+      const points = JSON.stringify(response.paths[0].points, null, 4);
+      fs.writeFile('geojson.json', points, (err) => {
+        if(err) console.error(err);
+      });
     })
     .catch((err) => {
       console.error(err.message);
     });
-  return responseFromGraphhopper.paths[0].distance
+  return responseFromGraphhopper
 }
 
 async function getLocations(addresses) {
