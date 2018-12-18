@@ -60,12 +60,13 @@ class App extends Component {
             <Map value={this.state.response}/> </div>
         }
        <div>
-        { this.state.response !== null &&
-          <div>{` ${this.state.response.distance} Meter`}
-            <Map value={this.state.response}/> </div>
-        { this.state.response === null &&
-          <Map value={this.state.response}/>
-        }
+       { this.state.response !== null &&
+         <div>{`Die Dauer  Ihres Weges in Minuten ist ${this.state.response.time/ 60000} min`}
+           <Map value={this.state.response}/> </div>
+       }
+
+      </div>
+        
         </div>
       </div>
     );
