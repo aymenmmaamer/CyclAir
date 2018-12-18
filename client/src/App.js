@@ -59,6 +59,10 @@ class App extends Component {
           <div>{`Mit dem Fahrrad sind es ${this.state.response.distance} Meter`}
             <Map value={this.state.response}/> </div>
         }
+       <div>
+        { this.state.response !== null &&
+          <div>{` ${this.state.response.distance} Meter`}
+            <Map value={this.state.response}/> </div>
         { this.state.response === null &&
           <Map value={this.state.response}/>
         }
